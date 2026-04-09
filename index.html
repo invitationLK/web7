@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>With All My Love | 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500&f[]=playfair-display@700,400italic&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #f43f5e; /* Vibrant Rose */
+            --soft: #fff1f2;    /* Rose 50 */
+            --gold: #fbbf24;
+            --cream: #fffaf0;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: #334155;
+            font-family: 'Satoshi', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        .playfair { font-family: 'Playfair Display', serif; }
+
+        /* --- Flying Hearts Background --- */
+        .heart-particle {
+            position: fixed; color: var(--primary);
+            z-index: 50; pointer-events: none; opacity: 0.6;
+            filter: drop-shadow(0 0 5px rgba(244, 63, 94, 0.3));
+        }
+
+        /* --- Bloom Section --- */
+        #unlock-section {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            background: radial-gradient(circle at center, #ffffff 0%, var(--soft) 100%);
+            z-index: 100; position: relative;
+        }
+
+        .floating-heart {
+            font-size: 80px; cursor: pointer;
+            filter: drop-shadow(0 20px 30px rgba(244, 63, 94, 0.4));
+            animation: heartbeat 1.2s infinite ease-in-out;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* --- Main Content --- */
+        #main-content { display: none; opacity: 0; }
+
+        /* --- Dynamic Collage --- */
+        .collage-container {
+            position: relative; height: 600px; width: 100%;
+            max-width: 1000px; margin: 40px auto;
+            overflow: hidden;
+        }
+
+        .collage-img {
+            position: absolute; border: 8px solid white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-radius: 12px; transition: transform 0.5s ease;
+            object-fit: cover;
+        }
+
+        /* --- Final Wish Background --- */
+        .wish-section {
+            position: relative; min-height: 80vh;
+            display: flex; justify-content: center; align-items: center;
+            padding: 40px 20px; overflow: hidden;
+        }
+
+        .wish-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=1200'); /* REPLACE WITH YOUR IMAGE */
+            background-size: cover; background-position: center;
+            filter: brightness(1.1) contrast(0.8) opacity(0.2);
+            z-index: -1;
+        }
+
+        .wish-box {
+            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px);
+            border: 2px solid white; padding: 3rem; border-radius: 30px;
+            max-width: 500px; box-shadow: 0 30px 60px rgba(244, 63, 94, 0.1);
+            text-align: center;
+        }
+
+        /* Custom UI Buttons */
+        .btn-glow {
+            background: var(--primary); color: white;
+            padding: 1rem 2.5rem; border-radius: 50px;
+            font-weight: 700; box-shadow: 0 10px 20px rgba(244, 63, 94, 0.3);
+            transition: 0.3s;
+        }
+        .btn-glow:hover { transform: scale(1.05); background: #e11d48; }
+
+    </style>
+</head>
+<body>
+
+    <section id="unlock-section">
+        <div class="text-center mb-16">
+            <h1 class="playfair italic text-5xl text-gray-800 mb-4">A Gift for You</h1>
+            <p class="text-rose-400 uppercase tracking-[0.3em] text-[10px] font-bold">Tap the heart to bloom</p>
+        </div>
+        <div class="floating-heart" onclick="unlockPage()">❤️</div>
+    </section>
+
+    <div id="main-content">
+        
+        <section class="py-20 px-6 text-center">
+            <span class="text-gold text-xs uppercase tracking-[0.5em] font-bold mb-4 block">To My Best Unplanned Thing</span>
+            <h2 class="playfair text-6xl mb-8">My King,</h2>
+            <p class="max-w-xl mx-auto text-lg text-gray-500 leading-relaxed">
+                Every moment with you is a memory I treasure. Thank you for being the most incredible person in my life.
+            </p>
+        </section>
+
+        <section class="collage-container" id="collage-area">
+            </section>
+
+        <section class="wish-section">
+            <div class="wish-bg"></div>
+            <div class="wish-box">
+                <h3 class="playfair italic text-3xl mb-6 text-rose-500">My Birthday Wish for You</h3>
+                <div class="space-y-4 text-gray-600 leading-relaxed">
+                    <p>On this special day, I wish for your path to be filled with the same light you bring into my life.</p>
+                    <p class="font-bold">Stay focused on your goals, babe. No matter how big the dream, I am right here beside you, cheering the loudest.</p>
+                    <p>I pray for your success, your happiness, and your peace every single day.</p>
+                    <p class="playfair italic text-2xl text-rose-600 pt-6">I love you so much, forever and always. 💋</p>
+                </div>
+                
+                <div class="mt-10 flex justify-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-rose-200"></div>
+                    <div class="w-2 h-2 rounded-full bg-rose-400"></div>
+                    <div class="w-2 h-2 rounded-full bg-rose-200"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-10 text-center text-rose-300 text-[10px] uppercase tracking-widest">
+            Handcrafted with love for Dec 2026
+        </footer>
+    </div>
+
+    <script>
+        const photos = [
+            "https://i.postimg.cc/sDz53h1K/images-(5).jpg",
+            "https://i.postimg.cc/rFd2FKbD/images-(3).jpg",
+            "https://i.postimg.cc/ydf27HyB/images-(4).jpg",
+            "https://i.postimg.cc/L4G2Ptjf/images-(6).jpg",
+            "https://i.postimg.cc/sDz53h1K/images-(5).jpg", // Duplicate for more collage density
+            "https://i.postimg.cc/rFd2FKbD/images-(3).jpg"
+        ];
+
+        // --- GLOBAL HEART RAIN ---
+        function createHeartRain() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart-particle';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = Math.random() * 15 + 10 + 'px';
+                heart.style.bottom = '-20px';
+                document.body.appendChild(heart);
+
+                gsap.to(heart, {
+                    y: -window.innerHeight - 100,
+                    x: '+=' + (Math.random() * 100 - 50),
+                    opacity: 0,
+                    duration: Math.random() * 4 + 4,
+                    ease: "none",
+                    onComplete: () => heart.remove()
+                });
+            }, 500);
+        }
+
+        // --- COLLAGE GENERATOR ---
+        function initCollage() {
+            const area = document.getElementById('collage-area');
+            const positions = [
+                {top: '10%', left: '5%', width: '220px', z: 10, rot: -5},
+                {top: '50%', left: '10%', width: '250px', z: 5, rot: 8},
+                {top: '5%', left: '40%', width: '200px', z: 8, rot: -3},
+                {top: '45%', left: '55%', width: '280px', z: 12, rot: 4},
+                {top: '15%', left: '70%', width: '210px', z: 7, rot: -10},
+                {top: '60%', left: '30%', width: '240px', z: 15, rot: 2}
+            ];
+
+            photos.forEach((src, i) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.className = 'collage-img';
+                const pos = positions[i];
+                img.style.top = pos.top;
+                img.style.left = pos.left;
+                img.style.width = pos.width;
+                img.style.zIndex = pos.z;
+                img.style.transform = `rotate(${pos.rot}deg)`;
+                area.appendChild(img);
+
+                // Subtle float animation for each collage item
+                gsap.to(img, {
+                    y: '+=15',
+                    x: '+=10',
+                    rotation: '+=2',
+                    duration: Math.random() * 2 + 2,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+            });
+        }
+
+        function unlockPage() {
+            // Exploding heart effect
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.5 },
+                colors: ['#f43f5e', '#fbbf24', '#ffffff']
+            });
+
+            gsap.to("#unlock-section", {
+                opacity: 0,
+                scale: 2,
+                duration: 1.2,
+                display: 'none',
+                ease: "power3.in"
+            });
+
+            gsap.to("#main-content", {
+                display: 'block',
+                opacity: 1,
+                duration: 2,
+                onComplete: () => {
+                    initCollage();
+                    createHeartRain();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
